@@ -117,7 +117,7 @@
 
 /* POPULAR-COURSES */
 .popular-courses-frame {
-  margin-top: 80px;
+  padding-top: 100px;
 }
 
 .popular-courses-frame .popular-section {
@@ -256,4 +256,16 @@
   color: #ffffff;
   font-size: 16px;
   font-weight: 500;
+}
+
+.popular-courses-frame
+  .popular-section
+  .cards-frame
+  .popular-course
+  .popular-course-detail-wrapper
+  .popular-course-mentor {
+  margin: 0;
+  font-weight: bold;
+  color: #595959;
+  font-size: 18px;
 }
