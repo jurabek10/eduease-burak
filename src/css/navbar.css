@@ -1,0 +1,34 @@
+.home-navbar {
+  width: 100%;
+  display: flex;
+  background-color: rgb(107, 204, 107);
+}
+.home-navbar a {
+  text-decoration: none;
+}
+
+.home-navbar img {
+  color: "green";
+}
+.home-navbar .hover-line a {
+  color: #f8f8ff;
+  z-index: 1000;
+}
+.home-navbar .underline {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #d7b686;
+}
+.home-navbar .hover-line:after {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #d7b686;
+  transform: scaleX(0);
+  transition: transform 150ms ease-in-out;
+}
+.home-navbar .hover-line:hover:after {
+  transform: scaleX(1);
+}
+.home-navbar div.hover-line:after {
+  transform-origin: 0% 50%;
+}

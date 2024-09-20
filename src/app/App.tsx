@@ -2,40 +2,28 @@ import React from "react";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import "../css/app.css";
 import { RippleBadge } from "./MaterialTheme/styled";
-import { Link, Route, Switch } from "react-router-dom";
-import { ProductsPage } from "../screens/productsPage";
+import { Link, Route, Switch, useLocation } from "react-router-dom";
+import { CoursesPage } from "../screens/coursesPage";
 import { OrdersPage } from "../screens/orderPage";
 import { UserPage } from "../screens/userPage";
 import { HelpPage } from "../screens/helpPage";
 import { HomePage } from "../screens/homePage";
+import { Footer } from "./components/footer";
+import { OtherNavbar } from "./components/header/OtherNavbar";
+import { HomeNavbar } from "./components/header/HomeNavbar";
+import "../css/app.css";
+import "../css/navbar.css";
 
 function App() {
+  const location = useLocation();
+  console.log("location:", location);
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">HomePage</Link>
-          </li>
-          <li>
-            <Link to="/products">ProductsPage</Link>
-          </li>
-          <li>
-            <Link to="/orders">OrdersPage</Link>
-          </li>
-          <li>
-            <Link to="/member-page">UserPage</Link>
-          </li>
-          <li>
-            <Link to="/help">HelpPage</Link>
-          </li>
-        </ul>
-      </nav>
+    <>
+      {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
       <Switch>
-        <Route path="/products">
-          <ProductsPage />
+        <Route path="/courses">
+          <CoursesPage />
         </Route>
-
         <Route path="/orders">
           <OrdersPage />
         </Route>
@@ -49,7 +37,8 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-    </div>
+      <Footer />
+    </>
   );
 }
 
