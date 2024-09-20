@@ -3,16 +3,17 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import "../css/app.css";
 import { RippleBadge } from "./MaterialTheme/styled";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
-import { CoursesPage } from "../screens/coursesPage";
-import { OrdersPage } from "../screens/orderPage";
-import { UserPage } from "../screens/userPage";
-import { HelpPage } from "../screens/helpPage";
-import { HomePage } from "../screens/homePage";
-import { Footer } from "./components/footer";
-import { OtherNavbar } from "./components/header/OtherNavbar";
-import { HomeNavbar } from "./components/header/HomeNavbar";
+import HomeNavbar from "./components/header/HomeNavbar";
+import OtherNavbar from "./components/header/OtherNavbar";
+import CoursesPage from "../screens/coursesPage";
+import OrdersPage from "../screens/orderPage";
+import UserPage from "../screens/userPage";
+import HelpPage from "../screens/helpPage";
+import HomePage from "../screens/homePage";
+import Footer from "./components/footer";
 import "../css/app.css";
 import "../css/navbar.css";
+import "../css/footer.css";
 
 function App() {
   const location = useLocation();

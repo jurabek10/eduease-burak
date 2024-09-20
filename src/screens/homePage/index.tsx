@@ -1,4 +1,4 @@
 import { Container } from "@mui/material";
-export function HomePage() {
+export default function HomePage() {
   return <Container>HomePage</Container>;
 }
