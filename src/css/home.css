@@ -1,0 +1,116 @@
+.features {
+  padding-top: 80px;
+}
+
+.features .features-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.features .features-wrapper .features-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.features .features-wrapper .features-top .features-subtitle {
+  font-size: 1.143em;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.6px;
+  line-height: 1.5em;
+  font-family: "Lora", serif;
+  color: #595959;
+}
+
+.features .features-wrapper .features-top .features-title {
+  margin-top: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 37px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.features .features-wrapper .features-list-wrapper {
+  margin-top: 30px;
+}
+
+.features .features-wrapper .features-list-wrapper .features-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features .features-wrapper .features-list-wrapper .features-list .feature {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center; */
+  text-align: center;
+  width: 370px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.features
+  .features-wrapper
+  .features-list-wrapper
+  .features-list
+  .feature:not(:last-child) {
+  margin-right: 71px;
+}
+
+.features
+  .features-wrapper
+  .features-list-wrapper
+  .features-list
+  .feature
+  .feature-icon {
+  width: 53px;
+  height: 63px;
+  object-fit: contain;
+}
+
+.features
+  .features-wrapper
+  .features-list-wrapper
+  .features-list
+  .feature
+  .feature-title {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.features
+  .features-wrapper
+  .features-list-wrapper
+  .features-list
+  .feature
+  .feature-title:hover {
+  color: #1e90ff;
+}
+
+.features
+  .features-wrapper
+  .features-list-wrapper
+  .features-list
+  .feature
+  .feature-txt {
+  margin: 0;
+  color: #343434;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
