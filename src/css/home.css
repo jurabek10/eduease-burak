@@ -449,3 +449,40 @@
   letter-spacing: 0%;
   text-align: center;
 }
+
+/* COMPANIES */
+.companies {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  width: 100%;
+  /* height: 200px; */
+  /* background-color: #eef5f9; */
+}
+
+.companies .companies-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.companies .companies-wrapper .companies-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 20px; */
+}
+
+.companies .companies-wrapper .companies-top .companies-title {
+  color: #6a6f73;
+  font-weight: 400;
+  font-size: 24px;
+  max-width: 100%;
+}
+
+.companies .companies-wrapper .companies-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  margin-bottom: 30px;
+}
