@@ -7,24 +7,28 @@ const list = [
     imagePath: "/img/onlineLearners.jpg",
     courseMentor: "Martin",
     courseDesc: "Good course",
+    courseCategory: "Marketing",
   },
   {
     courseName: "Java",
     imagePath: "/img/onlineLearners.jpg",
     courseMentor: "Martin",
     courseDesc: "Good course",
+    courseCategory: "Marketing",
   },
   {
     courseName: "Java",
     imagePath: "/img/onlineLearners.jpg",
     courseMentor: "Martin",
     courseDesc: "Good course",
+    courseCategory: "Marketing",
   },
   {
     courseName: "Java",
     imagePath: "/img/onlineLearners.jpg",
     courseMentor: "Martin",
     courseDesc: "Good course",
+    courseCategory: "Marketing",
   },
 ];
 export default function NewCourses() {
@@ -50,6 +54,9 @@ export default function NewCourses() {
                       <p className="popular-course-desc">{ele.courseDesc}</p>
                       <p className="popular-course-mentor">
                         {ele.courseMentor}
+                      </p>
+                      <p className="popular-course-category">
+                        {ele.courseCategory}
                       </p>
                     </div>
                   </div>

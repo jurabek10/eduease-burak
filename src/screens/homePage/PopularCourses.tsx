@@ -8,7 +8,6 @@ const list = [
     soldNumber: "10",
     courseMentor: "Martin",
     courseDesc: "Good course",
-    courseCategory: "Marketing",
   },
   {
     courseName: "JavaScript",
@@ -16,7 +15,6 @@ const list = [
     soldNumber: "10",
     courseMentor: "Martin",
     courseDesc: "Good course",
-    courseCategory: "Marketing",
   },
   {
     courseName: "Python",
@@ -24,7 +22,6 @@ const list = [
     soldNumber: "10",
     courseMentor: "Martin",
     courseDesc: "Good course",
-    courseCategory: "Marketing",
   },
   {
     courseName: "NodeJs",
@@ -32,7 +29,6 @@ const list = [
     soldNumber: "10",
     courseMentor: "Martin",
     courseDesc: "Good course",
-    courseCategory: "Marketing",
   },
 ];
 export default function PopularCourses() {
@@ -65,9 +61,7 @@ export default function PopularCourses() {
                           {ele.soldNumber}
                         </p>
                       </div>
-                      <p className="popular-course-category">
-                        {ele.courseCategory}
-                      </p>
+                      <p className="popular-course-bestseller">Bestseller</p>
                     </div>
                   </div>
                 </CssVarsProvider>

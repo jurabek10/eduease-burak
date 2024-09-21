@@ -145,6 +145,7 @@
   width: 295px;
   border-radius: 5px;
   background-color: #fafafa;
+  box-shadow: 8px 4px 4px lightblue;
 }
 
 .popular-courses-frame
@@ -246,7 +247,7 @@
   .cards-frame
   .popular-course
   .popular-course-detail-wrapper
-  .popular-course-category {
+  .popular-course-bestseller {
   position: absolute;
   top: 170px;
   left: 180px;
@@ -254,7 +255,24 @@
   background-color: rgb(54, 141, 173);
   border-radius: 10px;
   color: #ffffff;
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-weight: 500;
+}
+
+.popular-courses-frame
+  .popular-section
+  .cards-frame
+  .popular-course
+  .popular-course-detail-wrapper
+  .popular-course-category {
+  position: absolute;
+  top: 170px;
+  left: 180px;
+  padding: 4px 8px;
+  background-color: #2c3e50;
+  border-radius: 10px;
+  color: #ffffff;
+  /* font-size: 16px; */
   font-weight: 500;
 }
 
