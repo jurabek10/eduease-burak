@@ -7,7 +7,8 @@ const list = [
     imagePath: "/img/onlineLearners.jpg",
     soldNumber: "10",
     courseMentor: "Martin",
-    courseDesc: "Good course",
+    courseDesc:
+      "Good course, Good course, Good course, Good course,,Good course, Good course",
   },
   {
     courseName: "JavaScript",
