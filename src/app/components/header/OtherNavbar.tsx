@@ -18,14 +18,14 @@ export default function OtherNavbar() {
               <NavLink to="/">Home</NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink to="/products" activeClassName={"underline"}>
-                Products
+              <NavLink to="/courses" activeClassName={"underline"}>
+                Courses
               </NavLink>
             </Box>
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to="/orders" activeClassName={"underline"}>
-                  Orders
+                <NavLink to="/purchase" activeClassName={"underline"}>
+                  Purchase
                 </NavLink>
               </Box>
             ) : null}

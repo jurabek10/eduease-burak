@@ -42,6 +42,8 @@
 }
 .home-navbar a {
   text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .home-navbar .hover-line a {
@@ -209,6 +211,8 @@
 }
 .other-navbar a {
   text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
 }
 .other-navbar .hover-line a {
   color: #f8f8ff;
