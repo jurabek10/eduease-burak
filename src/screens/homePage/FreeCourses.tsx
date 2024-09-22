@@ -41,7 +41,13 @@ export default function FreeCourses() {
                   <Box className={"events-bott"}>
                     <Box className={"bott-left"}>
                       <div className={"event-title-speaker"}>
-                        <strong>{value.title}</strong>
+                        <a
+                          className="event-link"
+                          href={value.link}
+                          target="_blank"
+                        >
+                          <strong>{value.title}</strong>
+                        </a>
                         <div className={"event-organizator"}>
                           <img src={"/icons/speaker.svg"} />
                           <p className={"spec-text-author"}>{value.author}</p>
