@@ -1,4 +1,4 @@
 import { Container } from "@mui/material";
 export default function CoursesPage() {
-  return <Container>CoursesPage</Container>;
+  return <div className={"coursespage"}></div>;
 }
