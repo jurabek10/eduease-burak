@@ -342,3 +342,10 @@
   /* font-size: 16px; */
   font-weight: 600;
 }
+
+.courses-page .courses-list-frame .courses-list-wrapper .pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}

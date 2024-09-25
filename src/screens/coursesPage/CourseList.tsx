@@ -1,5 +1,9 @@
 import { Box, Button, Container, CssVarsProvider, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const list = [
   {
@@ -266,6 +270,22 @@ export default function CourseList() {
                 );
               })}
             </Stack>
+          </Stack>
+          <Stack className={"pagination-wrapper"}>
+            <Pagination
+              count={3}
+              page={1}
+              renderItem={(item) => (
+                <PaginationItem
+                  components={{
+                    previous: ArrowBackIcon,
+                    next: ArrowForwardIcon,
+                  }}
+                  {...item}
+                  color={"secondary"}
+                />
+              )}
+            />
           </Stack>
         </Stack>
       </Container>
