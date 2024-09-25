@@ -351,8 +351,8 @@
 }
 
 .courses-page .top-mentors {
-  padding-top: 40px;
-  padding-bottom: 50px;
+  padding-top: 60px;
+  padding-bottom: 80px;
   width: 100%;
   background-color: rgb(121, 167, 183);
   color: #ffffff;
@@ -368,7 +368,7 @@
 }
 
 .courses-page .top-mentors .top-mentors-wrapper {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .courses-page .top-mentors .top-mentors-wrapper .top-mentors-list {
@@ -419,4 +419,23 @@
   margin-top: 25px;
   font-size: 20px;
   margin-bottom: 0;
+}
+
+.courses-page .address {
+  width: 100%;
+  padding: 70px 90px;
+}
+
+.courses-page .address .address-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.courses-page .address .address-area .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
