@@ -30,9 +30,21 @@ export default function PurchasePage() {
                   aria-label="basic tabs example"
                   className={"table_list"}
                 >
-                  <Tab label="PAUSED PURCHASES" value={"1"} />
-                  <Tab label="PROCESS PURCHASES" value={"2"} />
-                  <Tab label="FINISHED PURCHASES" value={"3"} />
+                  <Tab
+                    sx={{ color: "blue" }}
+                    label="PAUSED PURCHASES"
+                    value={"1"}
+                  />
+                  <Tab
+                    sx={{ color: "blue" }}
+                    label="PROCESS PURCHASES"
+                    value={"2"}
+                  />
+                  <Tab
+                    sx={{ color: "blue" }}
+                    label="FINISHED PURCHASES"
+                    value={"3"}
+                  />
                 </Tabs>
               </Box>
               <Stack className={"order-main-contents"}>

@@ -1,28 +1,31 @@
 export const faq = [
   {
-    question: "How to make order?",
-    answer: "You should choose products and make an order via basket!",
-  },
-  {
-    question: "How long does delivery takes?",
-    answer: "It depends on your location. The max delivery time is 1 hour!",
-  },
-  {
-    question: "Is our details secure in this platform?",
+    question: "How do I enroll in a course?",
     answer:
-      "Of course, we take full responsibility for your provided user details!",
+      "Choose your course and complete the enrollment process via your account dashboard.",
   },
   {
-    question: "I am blocked, what should I do?",
-    answer: "There is a reason for your block, please contact to us!",
-  },
-  {
-    question: "How can I cancel order?",
+    question: "How long do courses take to complete?",
     answer:
-      "You can cancel your order any time easily, just go to your orders page!",
+      "It depends on the course. Some are self-paced, while others have set schedules.",
   },
   {
-    question: "Who developed this platform?",
-    answer: "ITC Global developers developed this platform!",
+    question: "Is my personal information secure on this platform?",
+    answer:
+      "Absolutely, we ensure full security of your provided personal details.",
+  },
+  {
+    question: "I'm unable to access my account, what should I do?",
+    answer:
+      "There may be a reason for this. Please contact our support team for help.",
+  },
+  {
+    question: "How can I withdraw from a course?",
+    answer:
+      "You can withdraw from a course anytime from your course dashboard.",
+  },
+  {
+    question: "Who created this platform?",
+    answer: "This platform was developed by ITC Global developers.",
   },
 ];
