@@ -8,6 +8,6 @@ export interface AppRootState {
 /** HOMEPAGE */
 export interface HomePageState {
   popularCourses: Course[];
-  newCourse: Course[];
+  newCourses: Course[];
   topUsers: Member[];
 }
