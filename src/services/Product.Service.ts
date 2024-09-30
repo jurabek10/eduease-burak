@@ -21,5 +21,17 @@ class ProductService {
       throw err;
     }
   }
+
+  public async getCourse(courseId: string): Promise<Course> {
+    try {
+      const url = `${this.path}/course/${courseId}`;
+      const result = await axios.get(url, { withCredentials: true });
+      console.log("getCourse:", result);
+      return result.data;
+    } catch (err) {
+      console.log("Error, getCourse:", err);
+      throw err;
+    }
+  }
 }
 export default ProductService;

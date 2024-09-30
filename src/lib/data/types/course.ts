@@ -6,6 +6,7 @@ export interface CourseInquery {
   limit: number;
   courseCategory?: CourseCategory;
   search?: string;
+  courseStatus?: CourseStatus;
 }
 
 export interface Course {

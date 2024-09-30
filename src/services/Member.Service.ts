@@ -17,5 +17,18 @@ class MemberService {
       throw err;
     }
   }
+
+  public async getAcademia(): Promise<Member[]> {
+    try {
+      let url = this.path + "/member/academia";
+      const result = await axios.get(url);
+      console.log("getAcademia:", result);
+      const academia: Member = result.data;
+      return academia as unknown as Member[];
+    } catch (err) {
+      console.log("Error, getAcademia:", err);
+      throw err;
+    }
+  }
 }
 export default MemberService;

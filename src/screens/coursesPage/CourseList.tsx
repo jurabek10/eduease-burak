@@ -6,6 +6,26 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setCourses } from "./slice";
+import { createSelector } from "reselect";
+import { retriveCourses } from "./selector";
+import { Course, CourseInquery } from "../../lib/data/types/course";
+import { ChangeEvent, useEffect, useState } from "react";
+import ProductService from "../../services/Product.Service";
+import { serverApi } from "../../lib/config";
+import { useHistory } from "react-router-dom";
+import { CourseCategory, CourseStatus } from "../../lib/enums/course.enum";
+
+/** REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setCourses: (data: Course[]) => dispatch(setCourses(data)),
+});
+const CoursesRetriever = createSelector(retriveCourses, (courses) => ({
+  courses,
+}));
+
 const list = [
   {
     courseName: "Java",
@@ -91,6 +111,64 @@ const list = [
 ];
 
 export default function CourseList() {
+  const { setCourses } = actionDispatch(useDispatch());
+  const { courses } = useSelector(CoursesRetriever);
+  const [courseSearch, setCourseSearch] = useState<CourseInquery>({
+    page: 1,
+    limit: 8,
+    order: "createdAt",
+    // productCollection = ProductCollection.DISH
+    search: "",
+  });
+  const [searchText, setSearchText] = useState<string>("");
+  const history = useHistory();
+
+  useEffect(() => {
+    const product = new ProductService();
+    product
+      .getCourses(courseSearch)
+      .then((data) => setCourses(data as unknown as Course[]))
+      .catch((err) => console.log(err));
+  }, [courseSearch]);
+
+  useEffect(() => {
+    if (searchText === "") {
+      courseSearch.search = "";
+      setCourseSearch({ ...courseSearch });
+    }
+  }, [searchText]);
+
+  /** HANDLERS */
+  const searchCategoryHandler = (category: CourseCategory | any) => {
+    courseSearch.page = 1;
+    courseSearch.courseCategory = category;
+    setCourseSearch({ ...courseSearch });
+  };
+
+  // const searchStatusHandler = (status: CourseStatus) => {
+  //   courseSearch.page = 1;
+  //   courseSearch.courseStatus = status;
+  //   setCourseSearch({ ...courseSearch });
+  // };
+
+  const searchOrderHandler = (order: string) => {
+    courseSearch.page = 1;
+    courseSearch.order = order;
+    // courseSearch.courseStatus = status;
+    setCourseSearch({ ...courseSearch });
+  };
+  const searchCourseHandler = () => {
+    courseSearch.search = searchText;
+    setCourseSearch({ ...courseSearch });
+  };
+  const paginationHandler = (e: ChangeEvent<any>, value: number) => {
+    courseSearch.page = value;
+    setCourseSearch({ ...courseSearch });
+  };
+  const chooseCourseHandler = (id: string) => {
+    history.push(`/courses/${id}`);
+  };
+
   return (
     <div className={"courses-list-frame"}>
       <Container>
@@ -103,9 +181,20 @@ export default function CourseList() {
               <input
                 className="search-input"
                 placeholder="What are you looking?"
-                type="text"
+                type="search"
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") searchCourseHandler();
+                }}
               />
-              <Button className="search-button" variant="contained">
+              <Button
+                className={"search-button"}
+                variant="contained"
+                onClick={searchCourseHandler}
+              >
                 Search
                 <SearchIcon />
               </Button>
@@ -114,33 +203,61 @@ export default function CourseList() {
           <Stack className="courses-list-category-wrapper">
             <Stack className="course-list-filter">
               <Button
-                sx={{ background: "rgb(23, 143, 183)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.order === "createdAt"
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchOrderHandler("createdAt")}
               >
                 {" "}
                 New{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.order === "coursePrice"
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchOrderHandler("coursePrice")}
               >
                 {" "}
                 Price{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.order === "courseSold"
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchOrderHandler("courseSold")}
               >
                 {" "}
                 Bestseller{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseStatus === CourseStatus.SALED
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchOrderHandler("")}
               >
                 {" "}
                 Sales{" "}
@@ -148,49 +265,91 @@ export default function CourseList() {
             </Stack>
             <Stack className="course-list-filter">
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.BUSINESS
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.BUSINESS)}
               >
                 {" "}
                 BUSINESS{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.FINANCE
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.FINANCE)}
               >
                 {" "}
                 FINANCE{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.IT
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.IT)}
               >
                 {" "}
                 IT{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.MARKETING
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.MARKETING)}
               >
                 {" "}
                 MARKETING{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(23, 143, 183)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.MUSIC
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.MUSIC)}
               >
                 {" "}
                 MUSIC{" "}
               </Button>
               <Button
-                sx={{ background: "rgb(83, 187, 222)", color: "#ffffff" }}
+                sx={{
+                  background:
+                    courseSearch.courseCategory === CourseCategory.OTHER
+                      ? "rgb(6, 96, 126)"
+                      : "rgb(83, 187, 222)",
+                  color: "#ffffff",
+                }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
+                onClick={() => searchCategoryHandler(CourseCategory.OTHER)}
               >
                 {" "}
                 OTHER{" "}
@@ -200,20 +359,21 @@ export default function CourseList() {
 
           <Stack className="courses-list">
             <Stack className={"cards-frame"}>
-              {list.map((ele, index) => {
+              {courses.map((course: Course) => {
+                const imagePath = `${serverApi}/${course.courseImages[0]}`;
                 return (
-                  <CssVarsProvider key={index}>
+                  <CssVarsProvider key={course._id}>
                     <div className="course">
                       <img
                         className="course-img"
-                        src={ele.imagePath}
+                        src={imagePath}
                         alt=""
                         width={300}
                         height={200}
                       />
                       <div className="course-detail-wrapper">
-                        <h4 className="course-title">{ele.courseName}</h4>
-                        <p className="course-desc">{ele.courseDesc}</p>
+                        <h4 className="course-title">{course.courseName}</h4>
+                        <p className="course-desc">{course.courseDesc}</p>
                         <div className="course-inside-wrapper">
                           <p className="course-mentor">
                             Mentor:
@@ -224,7 +384,7 @@ export default function CourseList() {
                                 fontSize: "18px",
                               }}
                             >
-                              {ele.courseMentor}
+                              {course.courseMentor}
                             </span>
                           </p>
                           <p className="course-sold">
@@ -236,7 +396,7 @@ export default function CourseList() {
                                 fontSize: "18px",
                               }}
                             >
-                              {ele.soldNumber}
+                              {course.courseSold}
                             </span>
                           </p>
                         </div>
@@ -245,26 +405,42 @@ export default function CourseList() {
                             $
                             <span
                               className={
-                                true
+                                course.courseStatus !== CourseStatus.SALED
                                   ? "course-ordinary-price"
                                   : "course-ordinary-price-lined"
                               }
                             >
-                              {ele.coursePrice}
+                              {course.coursePrice}
                             </span>
                             <span
                               className={
-                                true ? "saled-price" : "saled-price-hidden"
+                                course.courseStatus === CourseStatus.SALED
+                                  ? "saled-price"
+                                  : "saled-price-hidden"
                               }
                             >
-                              ${ele.salesPrice}
+                              ${course.courseSaledPrice}
                             </span>
                           </p>
                           <p className="course-duration">
-                            <span>{ele.courseDuration} hours</span>
+                            <span>{course.courseDuration} hours</span>
                           </p>
                         </div>
-                        <p className="course-category">{ele.courseCategory}</p>
+                        <p className="course-category">
+                          {course.courseCategory}
+                        </p>
+
+                        <Button
+                          sx={{
+                            background: "red",
+                            marginTop: "15px",
+                            marginLeft: "65px",
+                          }}
+                          variant="contained"
+                          onClick={() => chooseCourseHandler(course._id)}
+                        >
+                          See details
+                        </Button>
                       </div>
                     </div>
                   </CssVarsProvider>
@@ -274,8 +450,10 @@ export default function CourseList() {
           </Stack>
           <Stack className={"pagination-wrapper"}>
             <Pagination
-              count={3}
-              page={1}
+              count={
+                courses.length !== 0 ? courseSearch.page + 1 : courseSearch.page
+              }
+              page={courseSearch.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -286,6 +464,7 @@ export default function CourseList() {
                   color={"secondary"}
                 />
               )}
+              onChange={paginationHandler}
             />
           </Stack>
         </Stack>
