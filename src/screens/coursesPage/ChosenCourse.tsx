@@ -29,6 +29,7 @@ import ProductService from "../../services/Product.Service";
 import MemberService from "../../services/Member.Service";
 import { serverApi } from "../../lib/config";
 import { CourseStatus } from "../../lib/enums/course.enum";
+import { CartItem } from "../../lib/data/types/search";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -45,7 +46,11 @@ const AcademiaRetriever = createSelector(retriveAcademia, (academia) => ({
   academia,
 }));
 
-export default function ChosenProduct() {
+interface ChosenProducProps {
+  onAdd: (item: CartItem) => void;
+}
+export default function ChosenProduct(props: ChosenProducProps) {
+  const { onAdd } = props;
   const { courseId } = useParams<{ courseId: string }>();
   const { setAcademia, setChosenCourse } = actionDispatch(useDispatch());
   const { chosenCourse } = useSelector(ChosenCourseRetriever);

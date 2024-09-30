@@ -17,6 +17,7 @@ import ProductService from "../../services/Product.Service";
 import { serverApi } from "../../lib/config";
 import { useHistory } from "react-router-dom";
 import { CourseCategory, CourseStatus } from "../../lib/enums/course.enum";
+import { CartItem } from "../../lib/data/types/search";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -110,7 +111,12 @@ const list = [
   },
 ];
 
-export default function CourseList() {
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
+
+export default function CourseList(props: ProductsProps) {
+  const { onAdd } = props;
   const { setCourses } = actionDispatch(useDispatch());
   const { courses } = useSelector(CoursesRetriever);
   const [courseSearch, setCourseSearch] = useState<CourseInquery>({
@@ -430,17 +436,45 @@ export default function CourseList() {
                           {course.courseCategory}
                         </p>
 
-                        <Button
-                          sx={{
-                            background: "red",
-                            marginTop: "15px",
-                            marginLeft: "65px",
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            marginTop: "20px",
                           }}
-                          variant="contained"
-                          onClick={() => chooseCourseHandler(course._id)}
+                          className="buttons-wrapper"
                         >
-                          See details
-                        </Button>
+                          <Button
+                            sx={{
+                              background: "blue",
+                            }}
+                            variant="contained"
+                            onClick={() => chooseCourseHandler(course._id)}
+                          >
+                            See details
+                          </Button>
+                          <Button
+                            sx={{
+                              background: "red",
+                            }}
+                            variant="contained"
+                            className={"shop-btn"}
+                            onClick={(e) => {
+                              console.log("BUTTON PASSED");
+                              e.stopPropagation();
+                              onAdd({
+                                _id: course._id,
+                                quantity: 1,
+                                name: course.courseName,
+                                price: course.coursePrice,
+                                image: course.courseImages[0],
+                              });
+                            }}
+                          >
+                            Add to Cart
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CssVarsProvider>
