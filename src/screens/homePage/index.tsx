@@ -9,69 +9,64 @@ import FreeCourses from "./FreeCourses";
 import { useEffect } from "react";
 import "../../css/home.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
-import { setPopularCourses } from "./slice";
-import { retrivePopularCourses } from "./selector";
+import { setNewCourses, setPopularCourses, setTopUsers } from "./slice";
 import { Course } from "../../lib/data/types/course";
+import dotenv from "dotenv";
+import ProductService from "../../services/Product.Service";
+import { CourseCategory } from "../../lib/enums/course.enum";
+import { Member } from "../../lib/data/types/member";
+import MemberService from "../../services/Member.Service";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularCourses: (data: Course[]) => dispatch(setPopularCourses(data)),
+  setNewCourses: (data: Course[]) => dispatch(setNewCourses(data)),
+  setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
-const popularCoursesRetriever = createSelector(
-  retrivePopularCourses,
-  (popularCourses) => ({ popularCourses })
-);
 
 export default function HomePage() {
-  const { setPopularCourses } = actionDispatch(useDispatch());
-  const { popularCourses } = useSelector(popularCoursesRetriever);
+  const { setPopularCourses, setNewCourses, setTopUsers } = actionDispatch(
+    useDispatch()
+  );
+
   // Select: Store => Data
+  // console.log(process.env.REACT_APP_API_URL);
   useEffect(() => {
-    // // Backend server data request => DATA
-    // const result = [
-    //   {
-    //     _id: "6682e4551e42deb51c02dbc5",
-    //     productStatus: "PROCESS",
-    //     productCollection: "DISH",
-    //     productName: "Steak",
-    //     productPrice: 1,
-    //     productLeftCount: 100,
-    //     productSize: "NORMAL",
-    //     productVolume: 1,
-    //     productDesc: "circle",
-    //     productImages: [
-    //       ["uploads/products/ef5d2477-2d6c-464f-81ec-922b1a85b40b.jpeg"],
-    //     ],
-    //     productViews: 2,
-    //     createdAt: "2024-07-01T17:16:05.813Z",
-    //     updatedAt: "2024-07-25T05:28:00.584Z",
-    //     __v: 0,
-    //   },
-    //   {
-    //     _id: "6686a80e68bb769c100e0212",
-    //     productStatus: "PROCESS",
-    //     productCollection: "DRINK",
-    //     productName: "cola",
-    //     productPrice: 1,
-    //     productLeftCount: 20,
-    //     productSize: "NORMAL",
-    //     productVolume: 1,
-    //     productDesc: "drink",
-    //     productImages: [
-    //       ["uploads/products/2efd8663-e36d-402b-b7e0-b6b502834be3.png"],
-    //     ],
-    //     productViews: 0,
-    //     createdAt: "2024-07-04T13:47:58.319Z",
-    //     updatedAt: "2024-07-04T13:47:58.319Z",
-    //     __v: 0,
-    //   },
-    // ];
-    // // slice: DATA => REDUX
-    // // @ts-ignore
-    // setPopularDishes(result);
+    const product = new ProductService();
+    const member = new MemberService();
+    // console.log("populatDishes:", popularDishes);
+    product
+      .getCourses({
+        page: 1,
+        limit: 4,
+        order: "coursePrice",
+        // courseCategory: CourseCategory.BUSINESS,
+      })
+      .then((data) => {
+        console.log("data:", data);
+        setPopularCourses(data as unknown as Course[]);
+      })
+      .catch((err) => console.log(err));
+
+    product
+      .getCourses({
+        page: 1,
+        limit: 4,
+        order: "createdAt",
+        // productCollection: ProductCollection.DISH,
+      })
+      .then((data) => {
+        // console.log("data:", data);
+        setNewCourses(data as unknown as Course[]);
+      })
+      .catch((err) => console.log(err));
+
+    member
+      .getTopUsers()
+      .then((data) => setTopUsers(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

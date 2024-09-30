@@ -5,14 +5,20 @@ import { CssVarsProvider, Typography } from "@mui/joy";
 import CardOverflow from "@mui/joy/CardOverflow";
 import AspectRatio from "@mui/joy/AspectRatio";
 
-const activeUsers = [
-  { memberNick: "Martin", memberImage: "/img/onlineLearners.jpg" },
-  { memberNick: "Justin", memberImage: "/img/onlineLearners.jpg" },
-  { memberNick: "Rose", memberImage: "/img/onlineLearners.jpg" },
-  { memberNick: "Nusret", memberImage: "/img/onlineLearners.jpg" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retriveTopUsers } from "./selector";
+import { serverApi } from "../../lib/config";
+import { Member } from "../../lib/data/types/member";
+
+/** REDUX SELECTOR */
+const topUsersRetriever = createSelector(retriveTopUsers, (topUsers) => ({
+  topUsers,
+}));
 
 export default function ActiveUsers() {
+  const { topUsers } = useSelector(topUsersRetriever);
+  console.log("topUsers :", topUsers);
   return (
     <div className={"active-users-frame"}>
       <Container>
@@ -20,18 +26,23 @@ export default function ActiveUsers() {
           <Box className={"category-title"}>Active Users</Box>
           <Stack className={"cards-frame"}>
             <CssVarsProvider>
-              {activeUsers.length !== 0 ? (
-                activeUsers.map((ele, index) => {
+              {topUsers.length !== 0 ? (
+                topUsers.map((member: Member) => {
+                  const imagePath = `${serverApi}/${member.memberImage}`;
                   return (
-                    <Card key={index} variant="outlined" className={"card"}>
+                    <Card
+                      key={member._id}
+                      variant="outlined"
+                      className={"card"}
+                    >
                       <CardOverflow>
                         <AspectRatio ratio={"1"}>
-                          <img src={ele.memberImage} alt="" />
+                          <img src={imagePath} alt="" />
                         </AspectRatio>
                       </CardOverflow>
                       <CardOverflow variant="soft" className={"member-detail"}>
                         <Typography className={"member-nickname"}>
-                          {ele.memberNick}
+                          {member.memberNick}
                         </Typography>
                       </CardOverflow>
                     </Card>

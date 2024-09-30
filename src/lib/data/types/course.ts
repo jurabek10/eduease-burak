@@ -21,4 +21,6 @@ export interface Course {
   courseDesc: string;
   courseImages: string[];
   courseView: number;
+  createdAt: Date;
+  updatedAt: Date;
 }

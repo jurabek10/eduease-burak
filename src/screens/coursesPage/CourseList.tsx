@@ -1,4 +1,5 @@
-import { Box, Button, Container, CssVarsProvider, Stack } from "@mui/material";
+import { Box, Button, Container, Stack } from "@mui/material";
+import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
