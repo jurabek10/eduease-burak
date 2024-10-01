@@ -1,8 +1,19 @@
-import { Button, Box, Container, Stack } from "@mui/material";
+import {
+  Button,
+  Box,
+  Container,
+  Stack,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/data/types/search";
+import { useGlobals } from "../../hooks/useGlobals";
+import { serverApi } from "../../../lib/config";
+import { Logout } from "@mui/icons-material";
 
 interface HomeNavbarProps {
   cartItems: CartItem[];
@@ -10,25 +21,30 @@ interface HomeNavbarProps {
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
+  setSignupOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
+  handleLogutClick: (e: React.MouseEvent<HTMLElement>) => void;
+  anchorEl: HTMLElement | null;
+  handleCloseLogout: () => void;
+  handleLoogoutRequest: () => void;
 }
 export default function HomeNavbar(props: HomeNavbarProps) {
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const authMember = null;
-  const [count, setCount] = useState<number>(0);
-  const [value, setValue] = useState<boolean>(true);
-  useEffect(() => {
-    console.log("componentDidMount");
-    setCount(count + 1);
-    return () => {
-      console.log("componentWillUnmount");
-    };
-  }, [value]);
+  const {
+    cartItems,
+    onAdd,
+    onRemove,
+    onDelete,
+    onDeleteAll,
+    setSignupOpen,
+    setLoginOpen,
+    handleLogutClick,
+    anchorEl,
+    handleCloseLogout,
+    handleLoogoutRequest,
+  } = props;
+  const { authMember } = useGlobals();
 
   /** HANDLERS */
-  const buttonHandler = () => {
-    setValue(!value);
-  };
-
   return (
     <div className="home-navbar">
       <Container className="navbar-container">
@@ -80,17 +96,68 @@ export default function HomeNavbar(props: HomeNavbarProps) {
 
             {!authMember ? (
               <Box>
-                <Button className="login-button" variant="contained">
+                <Button
+                  onClick={() => setLoginOpen(true)}
+                  className="login-button"
+                  variant="contained"
+                >
                   Login
                 </Button>
               </Box>
             ) : (
               <img
                 className="user-avatar"
-                src={"/icons/default-user.svg"}
+                src={
+                  authMember?.memberImage
+                    ? `${serverApi}/${authMember?.memberImage}`
+                    : "/icons/default-user.svg"
+                }
                 aria-haspopup={"true"}
+                onClick={handleLogutClick}
               />
             )}
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={Boolean(anchorEl)}
+              onClose={handleCloseLogout}
+              onClick={handleCloseLogout}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem onClick={handleLoogoutRequest}>
+                <ListItemIcon>
+                  <Logout fontSize="small" style={{ color: "blue" }} />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
           </Stack>
         </Stack>
         <Stack className={"header-frame"}>
@@ -105,25 +172,37 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               technology and equipment.
             </Box>
             <Box className={"signup"}>
-              <Button
+              {/* <Button
                 className={"signup-button"}
                 variant={"contained"}
-                onClick={buttonHandler}
+                onClick={() => setSignupOpen(true)}
               >
                 SIGN UP
               </Button>
-              <Button className={"login-button"} variant={"contained"}>
+              <Button
+                className={"login-button"}
+                variant={"contained"}
+                onClick={() => setLoginOpen(true)}
+              >
                 LOGIN
-              </Button>
-              {/* {!authMember ? (
-                <Button className={"signup-button"} variant={"contained"}>
+              </Button> */}
+              {!authMember ? (
+                <Button
+                  className={"signup-button"}
+                  variant={"contained"}
+                  onClick={() => setSignupOpen(true)}
+                >
                   SIGN UP
                 </Button>
               ) : (
-                <Button className={"login-button"} variant={"contained"}>
+                <Button
+                  className={"login-button"}
+                  variant={"contained"}
+                  onClick={() => setLoginOpen(true)}
+                >
                   LOGIN
                 </Button>
-              )} */}
+              )}
             </Box>
           </Stack>
           {/* <Box className={"logo-frame"}>
