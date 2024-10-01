@@ -11,9 +11,24 @@ import ProcessPurchase from "./ProcessPurchase";
 import FinishedPurchase from "./FinishedPurchase";
 import PausedPurchase from "./PausedPurchase";
 import Divider from "../../app/components/divider";
+import { Order } from "../../lib/data/types/orders";
+import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+/** REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
 
 export default function PurchasePage() {
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+
   const [value, setValue] = useState("1");
+
+  /** HANDLERS */
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
