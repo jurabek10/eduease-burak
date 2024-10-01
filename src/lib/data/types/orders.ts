@@ -1,17 +1,11 @@
 import { OrderStatus } from "../../enums/order.enum";
 import { Course } from "./course";
-export interface OrderItemInput {
-  itemQuantity: number;
-  itemPrice: number;
-  courseId: string;
-  orderId?: string;
-}
 export interface OrderItem {
   _id: string;
   itemQuantity: number;
   itemPrice: number;
   orderItem: string;
-  productId: string;
+  courseId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -26,6 +20,12 @@ export interface Order {
   // from aggregation
   orderItems: OrderItem[];
   courseData: Course[];
+}
+export interface OrderItemInput {
+  itemQuantity: number;
+  itemPrice: number;
+  courseId: string;
+  orderId?: string;
 }
 export interface OrderInquery {
   page: number;

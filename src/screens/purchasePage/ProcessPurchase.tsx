@@ -3,6 +3,17 @@ import { Container, Stack, Box, Button } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import moment from "moment";
 
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retriveProcessOrders } from "./selector";
+import { Order, OrderItem } from "../../lib/data/types/orders";
+
+/** REDUX  SELECTOR */
+const processOrdersRetriever = createSelector(
+  retriveProcessOrders,
+  (processOrders) => ({ processOrders })
+);
+
 export default function ProcessOrders() {
   return (
     <TabPanel className={"table-panel"} value={"2"}>
