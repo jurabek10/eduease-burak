@@ -4,9 +4,18 @@ import TabPanel from "@mui/lab/TabPanel";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrivePausedOrders } from "./selector";
-import { Order, OrderItem } from "../../lib/data/types/orders";
+import {
+  Order,
+  OrderItem,
+  OrderUpdateInput,
+} from "../../lib/data/types/orders";
 import { Course } from "../../lib/data/types/course";
-import { serverApi } from "../../lib/config";
+import { Messages, serverApi } from "../../lib/config";
+import { useGlobals } from "../../app/hooks/useGlobals";
+import { T } from "../../lib/data/types/common";
+import { OrderStatus } from "../../lib/enums/order.enum";
+import OrdersService from "../../services/OrderService";
+import { sweetErrorHandling } from "../../lib/sweetAlert";
 
 /** REDUX  SELECTOR */
 const pausedOrdersRetriever = createSelector(
@@ -14,8 +23,61 @@ const pausedOrdersRetriever = createSelector(
   (pausedOrders) => ({ pausedOrders })
 );
 
-export default function PausedOrders() {
+/** HANDLERS */
+interface PausedOrdersProps {
+  setValue: (input: string) => void;
+}
+
+export default function PausedOrders(props: PausedOrdersProps) {
+  const { setValue } = props;
+  const { authMember, setOrderBuilder } = useGlobals();
   const { pausedOrders } = useSelector(pausedOrdersRetriever);
+
+  /** HANDLERS */
+  const deleteOrderHandler = async (e: T) => {
+    try {
+      if (!authMember) throw new Error(Messages.error2);
+      const orderId = e.target.value;
+      const input: OrderUpdateInput = {
+        orderId: orderId,
+        orderStatus: OrderStatus.DELETE,
+      };
+      const confirmation = window.confirm("Do you want to delete the order?");
+      if (confirmation) {
+        const order = new OrdersService();
+        await order.updateOrder(input);
+        // ORDER REBUILD
+        setOrderBuilder(new Date());
+      }
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  const processOrderHandler = async (e: T) => {
+    try {
+      if (!authMember) throw new Error(Messages.error2);
+      // PAYMENT
+      const orderId = e.target.value;
+      const input: OrderUpdateInput = {
+        orderId: orderId,
+        orderStatus: OrderStatus.PROCESS,
+      };
+      const confirmation = window.confirm(
+        "Do you want to proceed with payment?"
+      );
+      if (confirmation) {
+        const order = new OrdersService();
+        await order.updateOrder(input);
+        setValue("2");
+        setOrderBuilder(new Date());
+      }
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <TabPanel className={"table-panel"} value={"1"}>
       {pausedOrders?.map((order: Order) => {
@@ -27,11 +89,11 @@ export default function PausedOrders() {
                 const course: Course = order.courseData.filter(
                   (ele: Course) => item.courseId === ele._id
                 )[0];
-                const imagePath = `${serverApi}/${course.courseImages[0]}`;
+                const imagePath = `${serverApi}/${course?.courseImages[0]}`;
                 return (
                   <Box key={item._id} className={"orders-name-price"}>
                     <img src={imagePath} className={"order-dish-img"} />
-                    <p className={"title-dish"}>{course.courseName}</p>
+                    <p className={"title-dish"}>{course?.courseName}</p>
                     <Box className={"price-box"}>
                       <p>${item.itemPrice}</p>
                       <img
@@ -68,35 +130,39 @@ export default function PausedOrders() {
 
               <Box className={"paused-buttons"}>
                 <Button
+                  value={order._id}
                   sx={{ marginRight: "15px" }}
                   variant={"contained"}
                   color={"secondary"}
                   className={"paused-btn-cancel"}
+                  onClick={deleteOrderHandler}
                 >
                   Cancel
                 </Button>
-                <Button variant={"contained"} className={"paused-btn-payment"}>
+                <Button
+                  value={order._id}
+                  variant={"contained"}
+                  className={"paused-btn-payment"}
+                  onClick={processOrderHandler}
+                >
                   Payment
                 </Button>
               </Box>
             </Box>
-            {!pausedOrders ||
-              (pausedOrders.length === 0 && (
-                <Box
-                  display={"flex"}
-                  flexDirection={"row"}
-                  justifyContent={"center"}
-                >
-                  <img
-                    src={"/icons/noimage-list.svg"}
-                    alt=""
-                    style={{ width: 300, height: 300 }}
-                  />
-                </Box>
-              ))}
           </Box>
         );
       })}
+
+      {!pausedOrders ||
+        (pausedOrders.length === 0 && (
+          <Box display={"flex"} flexDirection={"row"} justifyContent={"center"}>
+            <img
+              src={"/icons/noimage-list.svg"}
+              alt=""
+              style={{ width: 300, height: 300 }}
+            />
+          </Box>
+        ))}
     </TabPanel>
   );
 }

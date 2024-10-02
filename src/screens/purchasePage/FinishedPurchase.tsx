@@ -26,11 +26,11 @@ export default function FinishedOrders() {
                 const course: Course = order.courseData.filter(
                   (ele: Course) => item.courseId === ele._id
                 )[0];
-                const imagePath = `${serverApi}/${course.courseImages[0]}`;
+                const imagePath = `${serverApi}/${course?.courseImages[0]}`;
                 return (
                   <Box key={item._id} className={"orders-name-price"}>
                     <img src={imagePath} className={"order-dish-img"} />
-                    <p className={"title-dish"}>{course.courseName}</p>
+                    <p className={"title-dish"}>{course?.courseName}</p>
                     <Box className={"price-box"}>
                       <p>${item.itemPrice}</p>
                       <img

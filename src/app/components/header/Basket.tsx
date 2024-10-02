@@ -42,7 +42,7 @@ export default function Basket(props: BasketProps) {
     setAnchorEl(null);
   };
 
-  const proceedOrderHandle = async () => {
+  const proceedOrderHandler = async () => {
     try {
       handleClose();
       if (!authMember) throw new Error(Messages.error2);
@@ -51,6 +51,7 @@ export default function Basket(props: BasketProps) {
       onDeleteAll();
       history.push("/orders");
       // REFRESH VIA CONTEXT
+      setOrderBuilder(new Date());
     } catch (err) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -160,7 +161,7 @@ export default function Basket(props: BasketProps) {
             <Box className={"basket-order"}>
               <span className={"price"}>Total: ${totalPrice}</span>
               <Button
-                onClick={proceedOrderHandle}
+                onClick={proceedOrderHandler}
                 startIcon={<ShoppingCartIcon />}
                 variant={"contained"}
               >
@@ -174,4 +175,7 @@ export default function Basket(props: BasketProps) {
       </Menu>
     </Box>
   );
+}
+function setOrderBuilder(arg0: Date) {
+  throw new Error("Function not implemented.");
 }
