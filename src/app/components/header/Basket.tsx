@@ -46,15 +46,19 @@ export default function Basket(props: BasketProps) {
     try {
       handleClose();
       if (!authMember) throw new Error(Messages.error2);
+
       const order = new OrdersService();
       await order.createOrder(cartItems);
+
       onDeleteAll();
-      history.push("/orders");
+
+      history.push("/purchase");
+
       // REFRESH VIA CONTEXT
       setOrderBuilder(new Date());
     } catch (err) {
-      console.log(err);
-      sweetErrorHandling(err).then();
+      // console.log(err);
+      // sweetErrorHandling(err).then();
     }
   };
 

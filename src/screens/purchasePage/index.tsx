@@ -18,6 +18,9 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { OrderStatus } from "../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../app/hooks/useGlobals";
+import { useHistory } from "react-router-dom";
+import { serverApi } from "../../lib/config";
+import { MemberType } from "../../lib/enums/member.enum";
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
@@ -29,7 +32,8 @@ export default function PurchasePage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
 
-  const { orderBuilder } = useGlobals();
+  const { orderBuilder, authMember } = useGlobals();
+  const history = useHistory();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquery>({
     page: 1,
@@ -56,6 +60,7 @@ export default function PurchasePage() {
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  if (!authMember) history.push("/");
   return (
     <div className="order-page">
       <Container className={"order-container"}>
@@ -98,22 +103,39 @@ export default function PurchasePage() {
         <Stack className={"order-right"}>
           <Stack className={"user-frame"}>
             <Box className={"user-img-wrapper"}>
-              <img src={"/img/justin.webp"} className={"user-img"} />
+              <img
+                src={
+                  authMember?.memberImage
+                    ? `${serverApi}/${authMember.memberImage}`
+                    : "/icons/default-user.svg"
+                }
+                className={"user-img"}
+              />
               <Box className={"person-icon-wrapper"}>
-                <PersonIcon
-                  className={"person-icon"}
+                <img
                   style={{ color: "white" }}
+                  src={
+                    authMember?.memberType === MemberType.ACADEMIA
+                      ? "/icons/restaurant.svg"
+                      : "/icons/user-badge.svg"
+                  }
+                  // className={"person-icon"}
+                  // style={{ color: "white" }}
                 />
               </Box>
             </Box>
-            <Box className={"user-name"}>Justin</Box>
-            <Box className={"user-type"}>USER</Box>
+            <Box className={"user-name"}>{authMember?.memberNick}</Box>
+            <Box className={"user-type"}> {authMember?.memberType}</Box>
             <Divider height="2" width="360" bg="rgb(161, 161, 161)" />
             <div className="user-location-wrapper">
               <Box>
                 <LocationOnIcon />
               </Box>
-              <Box className={"user-address"}>Seoul, South Korea</Box>
+              <Box className={"user-address"}>
+                {authMember?.memberAddress
+                  ? authMember.memberAddress
+                  : "No address"}
+              </Box>
             </div>
           </Stack>
           <Stack className={"payment-frame"}>
