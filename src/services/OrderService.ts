@@ -20,6 +20,8 @@ class OrdersService {
           itemQuantity: cartItem.quantity,
           itemPrice: cartItem.price,
           courseId: cartItem._id,
+          itemSaledPrice: cartItem.saledPrice,
+          itemStatus: cartItem.status,
         };
       });
       const url = this.path + "/order/create";

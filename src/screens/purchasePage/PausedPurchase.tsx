@@ -16,6 +16,7 @@ import { T } from "../../lib/data/types/common";
 import { OrderStatus } from "../../lib/enums/order.enum";
 import OrdersService from "../../services/OrderService";
 import { sweetErrorHandling } from "../../lib/sweetAlert";
+import { CourseStatus } from "../../lib/enums/course.enum";
 
 /** REDUX  SELECTOR */
 const pausedOrdersRetriever = createSelector(
@@ -90,12 +91,21 @@ export default function PausedOrders(props: PausedOrdersProps) {
                   (ele: Course) => item.courseId === ele._id
                 )[0];
                 const imagePath = `${serverApi}/${course?.courseImages[0]}`;
+                // Log the status and saledPrice for debugging
+                // console.log("Item Status:", item.itemStatus);
+                // console.log("Item Saled Price:", item.itemSaledPrice);
+                // console.log("Item Regular Price:", item.itemPrice);
+                const itemPrice =
+                  item.itemSaledPrice > 0
+                    ? item.itemSaledPrice
+                    : item.itemPrice;
+                console.log("itemPrice=>>>", itemPrice);
                 return (
                   <Box key={item._id} className={"orders-name-price"}>
                     <img src={imagePath} className={"order-dish-img"} />
                     <p className={"title-dish"}>{course?.courseName}</p>
                     <Box className={"price-box"}>
-                      <p>${item.itemPrice}</p>
+                      <p>${itemPrice}</p>
                       <img
                         style={{ marginLeft: "5px", marginRight: "5px" }}
                         src={"/icons/close.svg"}
@@ -104,7 +114,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
                       <p>{item.itemQuantity}</p>
                       <img src={"/icons/pause.svg"} alt="" />
                       <p style={{ marginLeft: "15px" }}>
-                        ${item.itemQuantity * item.itemPrice}
+                        ${item.itemQuantity * itemPrice}
                       </p>
                     </Box>
                   </Box>
@@ -125,7 +135,18 @@ export default function PausedOrders(props: PausedOrdersProps) {
                   style={{ marginLeft: "20px", marginRight: "20px" }}
                 /> */}
                 <p className={"box-total-text"}>Total:</p>
-                <p className={"box-total-number"}>${order.orderTotal}</p>
+                <p className={"box-total-number"}>
+                  $
+                  {order.orderItems
+                    .reduce((total, item) => {
+                      const itemPrice =
+                        item.itemSaledPrice > 0
+                          ? item.itemSaledPrice
+                          : item.itemPrice;
+                      return total + item.itemQuantity * itemPrice;
+                    }, 0)
+                    .toFixed(2)}
+                </p>
               </Box>
 
               <Box className={"paused-buttons"}>

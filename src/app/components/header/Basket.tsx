@@ -12,6 +12,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useGlobals } from "../../hooks/useGlobals";
 import OrdersService from "../../../services/OrderService";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { CourseStatus } from "../../../lib/enums/course.enum";
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -26,7 +27,12 @@ export default function Basket(props: BasketProps) {
   const { authMember } = useGlobals();
   const history = useHistory();
   const itemsPrice: number = cartItems.reduce(
-    (a: number, c: CartItem) => a + c.quantity * c.price,
+    (a: number, c: CartItem) =>
+      a +
+      c.quantity *
+        (c.status === CourseStatus.SALED && c.saledPrice
+          ? c.saledPrice
+          : c.price),
     0
   );
 
@@ -141,7 +147,13 @@ export default function Basket(props: BasketProps) {
                     <img src={imagePath} className={"product-img"} />
                     <span className={"product-name"}>{item.name}</span>
                     <p className={"product-price"}>
-                      ${item.price} x {item.quantity}
+                      $
+                      {
+                        item.status === CourseStatus.SALED && item.saledPrice // Check if the course is on sale and saledPrice exists
+                          ? item.saledPrice // Use saledPrice if status is "Saled"
+                          : item.price // Otherwise use the normal price
+                      }{" "}
+                      x {item.quantity}
                     </p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">

@@ -1,9 +1,12 @@
+import { CourseStatus } from "../../enums/course.enum";
 import { OrderStatus } from "../../enums/order.enum";
 import { Course } from "./course";
 export interface OrderItem {
   _id: string;
   itemQuantity: number;
   itemPrice: number;
+  itemSaledPrice: number;
+  itemStatus: CourseStatus;
   orderItem: string;
   courseId: string;
   createdAt: Date;
@@ -24,6 +27,8 @@ export interface Order {
 export interface OrderItemInput {
   itemQuantity: number;
   itemPrice: number;
+  itemSaledPrice: number;
+  itemStatus: CourseStatus;
   courseId: string;
   orderId?: string;
 }

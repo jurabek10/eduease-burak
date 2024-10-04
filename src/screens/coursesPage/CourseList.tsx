@@ -468,6 +468,8 @@ export default function CourseList(props: ProductsProps) {
                                 quantity: 1,
                                 name: course.courseName,
                                 price: course.coursePrice,
+                                saledPrice: course.courseSaledPrice,
+                                status: course.courseStatus,
                                 image: course.courseImages[0],
                               });
                             }}

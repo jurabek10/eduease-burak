@@ -149,6 +149,8 @@ export default function ChosenProduct(props: ChosenProducProps) {
                     quantity: 1,
                     name: chosenCourse.courseName,
                     price: chosenCourse.coursePrice,
+                    saledPrice: chosenCourse.courseSaledPrice,
+                    status: chosenCourse.courseStatus,
                     image: chosenCourse.courseImages[0],
                   });
                 }}
