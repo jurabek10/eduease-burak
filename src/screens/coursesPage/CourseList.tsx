@@ -27,90 +27,6 @@ const CoursesRetriever = createSelector(retriveCourses, (courses) => ({
   courses,
 }));
 
-const list = [
-  {
-    courseName: "Java",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc:
-      "Good course, Good course, Good course, Good course,,Good course, Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "JavaScript dhdhdhhhdd dhdhddhdh ddhd",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc: "Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "Python",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc: "Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "NodeJs",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc: "Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "Java",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc:
-      "Good course, Good course, Good course, Good course,,Good course, Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "Java",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc:
-      "Good course, Good course, Good course, Good course,,Good course, Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-  {
-    courseName: "Java",
-    imagePath: "/img/onlineLearners.jpg",
-    soldNumber: "10",
-    courseMentor: "Martin",
-    courseDesc:
-      "Good course, Good course, Good course, Good course,,Good course, Good course",
-    coursePrice: "100",
-    salesPrice: "50",
-    courseCategory: "Marketing",
-    courseDuration: "23",
-  },
-];
-
 interface ProductsProps {
   onAdd: (item: CartItem) => void;
 }
@@ -241,19 +157,19 @@ export default function CourseList(props: ProductsProps) {
               <Button
                 sx={{
                   background:
-                    courseSearch.order === "courseSold"
+                    courseSearch.order === "courseView"
                       ? "rgb(6, 96, 126)"
                       : "rgb(83, 187, 222)",
                   color: "#ffffff",
                 }}
                 variant={"contained"}
                 className={"course-list-filter-button"}
-                onClick={() => searchOrderHandler("courseSold")}
+                onClick={() => searchOrderHandler("courseView")}
               >
                 {" "}
-                Bestseller{" "}
+                Most Interested{" "}
               </Button>
-              <Button
+              {/* <Button
                 sx={{
                   background:
                     courseSearch.courseStatus === CourseStatus.SALED
@@ -267,7 +183,7 @@ export default function CourseList(props: ProductsProps) {
               >
                 {" "}
                 Sales{" "}
-              </Button>
+              </Button> */}
             </Stack>
             <Stack className="course-list-filter">
               <Button
@@ -394,7 +310,7 @@ export default function CourseList(props: ProductsProps) {
                             </span>
                           </p>
                           <p className="course-sold">
-                            Sold:
+                            Interested:
                             <span
                               style={{
                                 fontWeight: "bold",
@@ -402,7 +318,7 @@ export default function CourseList(props: ProductsProps) {
                                 fontSize: "18px",
                               }}
                             >
-                              {course.courseSold}
+                              {course.courseView}
                             </span>
                           </p>
                         </div>

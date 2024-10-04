@@ -41,13 +41,21 @@ export default function PopularCourses() {
                         {course.courseName}
                       </h4>
                       <p className="popular-course-desc">{course.courseDesc}</p>
-                      <div className="popular-course-wrapper">
+                      <div
+                        className="popular-course-wrapper"
+                        style={{ marginTop: "10px" }}
+                      >
                         <p className="popular-course-mentor">
+                          <span
+                            style={{ fontStyle: "italic", fontWeight: "400" }}
+                          >
+                            by
+                          </span>{" "}
                           {course.courseMentor}
                         </p>
                         <p className="popular-course-sold">
-                          <span className="sold">Sold: </span>
-                          {course.courseSold}
+                          <span className="sold">Interested: </span>
+                          {course.courseView}
                         </p>
                       </div>
                       <p className="popular-course-bestseller">Bestseller</p>

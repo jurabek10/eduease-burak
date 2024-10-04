@@ -41,7 +41,7 @@ export default function HomePage() {
       .getCourses({
         page: 1,
         limit: 4,
-        order: "coursePrice",
+        order: "courseView",
         // courseCategory: CourseCategory.BUSINESS,
       })
       .then((data) => {

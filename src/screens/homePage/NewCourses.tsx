@@ -38,7 +38,19 @@ export default function NewCourses() {
                         {course.courseName}
                       </h4>
                       <p className="popular-course-desc">{course.courseDesc}</p>
-                      <p className="popular-course-mentor">
+                      <p
+                        className="popular-course-mentor"
+                        style={{ marginTop: "10px" }}
+                      >
+                        <span
+                          style={{
+                            fontStyle: "italic",
+                            fontWeight: "400",
+                            marginRight: "5px",
+                          }}
+                        >
+                          by
+                        </span>
                         {course.courseMentor}
                       </p>
                       <p className="popular-course-category">
