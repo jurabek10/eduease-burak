@@ -24,11 +24,11 @@ export default function CoursesPage(props: ProductsPageProps) {
         <Route path={`${courses.path}`}>
           <CourseList onAdd={onAdd} />
         </Route>
-        <Route path={`${courses.path}`}>
+        <Route>
           <TopMentors />
         </Route>
-        <Route path={`${courses.path}`}>
-          <TopMentors />
+        <Route>
+          <Address />
         </Route>
       </Switch>
     </div>

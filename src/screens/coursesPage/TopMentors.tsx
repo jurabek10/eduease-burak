@@ -1,4 +1,5 @@
 import { Box, Container, Stack } from "@mui/material";
+import { CartItem } from "../../lib/data/types/search";
 
 export default function TopMentors() {
   return (

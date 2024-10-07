@@ -101,7 +101,7 @@ export default function ChosenProduct(props: ChosenProducProps) {
             <Box className={"rating-box"}>
               <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
               <div className="course-sold-number">
-                ({chosenCourse.courseSold} students)
+                ({chosenCourse.courseView} students interested)
               </div>
               <div className={"evaluation-box"}>
                 <span className={"course-mentor"}>
