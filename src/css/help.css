@@ -159,3 +159,79 @@
   line-height: 26px;
   color: #4f547b;
 }
+
+/* Portfolio redesign */
+.help-page {
+  min-height: 100vh;
+  background: var(--ee-bg);
+}
+
+.help-page .help-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 92px;
+}
+
+.help-page .help-menu {
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.help-page .help-menu .help-menu-title,
+.help-page .rules-box .rules-title,
+.help-page .admin-letter-frame span {
+  color: var(--ee-ink);
+  font-family: inherit;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.help-page .help-menu .help-menu-list,
+.help-page .accordion-menu,
+.help-page .admin-letter-box {
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.help-page .rules-box,
+.help-page .admin-letter-container .admin-letter-frame {
+  color: var(--ee-muted);
+}
+
+.help-page .rules-box p,
+.help-page .admin-letter-frame p {
+  color: var(--ee-muted);
+  font-family: inherit;
+  line-height: 1.7;
+}
+
+.help-page .admin-letter-frame .admin-input-box label {
+  color: var(--ee-ink);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.help-page .admin-letter-frame .admin-input-box input,
+.help-page .admin-letter-frame .admin-input-box textarea {
+  border-color: var(--ee-line);
+  background: var(--ee-surface-soft);
+  color: var(--ee-ink);
+  font-family: inherit;
+  box-shadow: none;
+}
+
+.help-page .admin-letter-frame .admin-input-box input:focus,
+.help-page .admin-letter-frame .admin-input-box textarea:focus {
+  border-color: var(--ee-primary);
+  outline: none;
+}
+
+@media (max-width: 760px) {
+  .help-page .help-container {
+    padding: 52px 0 72px;
+  }
+}

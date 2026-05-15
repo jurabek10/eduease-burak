@@ -300,3 +300,81 @@
   justify-content: flex-end;
   margin-top: 25px;
 }
+
+/* Portfolio redesign */
+.user-page {
+  min-height: 100vh;
+  background: var(--ee-bg);
+}
+
+.user-page .my-page-frame {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 92px;
+}
+
+.user-page .my-page-left,
+.user-page .my-page-right,
+.user-page .order-info-box,
+.user-page .settings {
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.user-page .my-page-left,
+.user-page .my-page-right,
+.user-page .settings {
+  padding: 24px;
+}
+
+.user-page .my-page-left .menu-name,
+.user-page .my-page-right .title,
+.user-page .settings .title {
+  color: var(--ee-ink);
+  font-family: inherit;
+  font-weight: 850;
+}
+
+.user-page .order-info-box {
+  overflow: hidden;
+}
+
+.user-page .settings .spec-input,
+.user-page .settings .spec-textarea {
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+  color: var(--ee-ink);
+  box-shadow: none;
+  font-family: inherit;
+}
+
+.user-page .settings .spec-input:focus,
+.user-page .settings .spec-textarea:focus {
+  border-color: var(--ee-primary);
+  outline: none;
+}
+
+.user-page .settings .member-media-frame {
+  border: 1px dashed var(--ee-line);
+  background: var(--ee-surface-soft);
+}
+
+.user-page .settings .member-media-frame .mb-image {
+  border: 3px solid #ffffff;
+  box-shadow: var(--ee-shadow-soft);
+  object-fit: cover;
+}
+
+.user-page .settings .up-del-box {
+  background: var(--ee-ink);
+  color: #ffffff;
+}
+
+@media (max-width: 860px) {
+  .user-page .my-page-frame {
+    padding: 52px 0 72px;
+  }
+}
