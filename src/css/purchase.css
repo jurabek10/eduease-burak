@@ -285,3 +285,77 @@
   font-weight: 600;
   line-height: normal;
 }
+
+/* Portfolio redesign */
+.order-page {
+  min-height: 100vh;
+  background: var(--ee-bg);
+}
+
+.order-page .order-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 92px;
+}
+
+.order-page .order-left,
+.order-page .order-right,
+.order-page .user-frame,
+.order-page .order-main-box,
+.order-page .order-right .payment-frame {
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.order-page .order-left,
+.order-page .order-right {
+  padding: 24px;
+}
+
+.order-page .order-right .payment-frame {
+  width: 100%;
+  padding: 22px;
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.order-page .order-right .input {
+  min-height: 44px;
+  border-color: var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+  color: var(--ee-ink);
+  font-family: inherit;
+}
+
+.order-page .order-right .input:focus {
+  border-color: var(--ee-primary);
+  outline: none;
+}
+
+.order-page .order-main-box .total-price-box .buttons-wrapper .process-button,
+.order-page .process-button,
+.order-page .paused-btn-payment {
+  border-radius: var(--ee-radius);
+  background: var(--ee-primary) !important;
+  box-shadow: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 800;
+}
+
+.order-page .paused-btn-payment {
+  background: var(--ee-success) !important;
+}
+
+.order-page .order-main-box .total-price-box .buttons-wrapper .data {
+  color: var(--ee-muted);
+  font-family: inherit;
+}
+
+@media (max-width: 860px) {
+  .order-page .order-container {
+    padding: 52px 0 72px;
+  }
+}

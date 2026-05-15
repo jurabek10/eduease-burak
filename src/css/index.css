@@ -11,3 +11,92 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --ee-bg: #f5f7fb;
+  --ee-surface: #ffffff;
+  --ee-surface-soft: #f8fafc;
+  --ee-ink: #111827;
+  --ee-muted: #64748b;
+  --ee-line: #e2e8f0;
+  --ee-primary: #2563eb;
+  --ee-primary-dark: #1d4ed8;
+  --ee-accent: #0f766e;
+  --ee-warm: #f59e0b;
+  --ee-success: #16a34a;
+  --ee-danger: #dc2626;
+  --ee-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+  --ee-shadow-soft: 0 10px 28px rgba(15, 23, 42, 0.08);
+  --ee-radius: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.12), transparent 32rem),
+    linear-gradient(180deg, #ffffff 0%, var(--ee-bg) 42%, #ffffff 100%);
+  color: var(--ee-ink);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.MuiContainer-root {
+  max-width: 1180px !important;
+}
+
+.MuiButton-root,
+.MuiFab-root {
+  border-radius: var(--ee-radius) !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.MuiButton-containedPrimary,
+.MuiFab-primary {
+  background: var(--ee-primary) !important;
+}
+
+.MuiButton-containedPrimary:hover,
+.MuiFab-primary:hover {
+  background: var(--ee-primary-dark) !important;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: var(--ee-radius) !important;
+  background: var(--ee-surface);
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: var(--ee-line) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--ee-primary) !important;
+  border-width: 1px !important;
+}

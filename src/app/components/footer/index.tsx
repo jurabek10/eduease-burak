@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 const Footers = styled.div`
   width: 100%;
-  height: 590px;
+  min-height: 430px;
   display: flex;
-  background: #5f9ea0;
+  background: linear-gradient(135deg, #111827 0%, #172033 64%, #0f766e 100%);
   background-size: cover;
 `;
 export default function Footer() {
@@ -14,34 +14,49 @@ export default function Footer() {
   return (
     <Footers>
       <Container>
-        <Stack flexDirection={"row"} sx={{ mt: "94px" }}>
+        <Stack
+          flexDirection={"row"}
+          sx={{
+            py: "64px",
+            gap: { xs: "36px", md: "84px" },
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+          }}
+        >
           <Stack flexDirection={"column"} style={{ width: "340px" }}>
             <Box>
-              <img width={"100px"} src={"/icons/eduease-logo.png"} />
+              <img width={"110px"} src={"/icons/eduease-logo.png"} alt="EduEase" />
             </Box>
             <Box className={"foot-desc-txt"}>
               Choose EduEase for world-class education. Join us and learn from
               expert tutors with cutting-edge technology.
             </Box>
             <Box className="sns-context">
-              <img src={"/icons/facebook.svg"} />
-              <img src={"/icons/instagram.svg"} />
-              <img src={"/icons/youtube.svg"} />
+              <img src={"/icons/facebook.svg"} alt="Facebook" />
+              <img src={"/icons/instagram.svg"} alt="Instagram" />
+              <img src={"/icons/youtube.svg"} alt="YouTube" />
             </Box>
           </Stack>
-          <Stack sx={{ ml: "288px" }} flexDirection={"row"}>
+          <Stack
+            sx={{
+              ml: { xs: 0, md: "auto" },
+              gap: { xs: "36px", md: "84px" },
+              flexWrap: "wrap",
+            }}
+            flexDirection={"row"}
+          >
             <Stack>
               <Box>
                 <Box className={"foot-category-title"}>Menu</Box>
                 <Box className={"foot-category-link"}>
                   <Link to="/">Home</Link>
-                  <Link to="/products">Courses</Link>
+                  <Link to="/courses">Courses</Link>
                   {authMember && <Link to="/orders">Orders</Link>}
                   <Link to="/help">Help</Link>
                 </Box>
               </Box>
             </Stack>
-            <Stack sx={{ ml: "100px" }}>
+            <Stack>
               <Box>
                 <Box className={"foot-category-title"}>Find us</Box>
                 <Box
@@ -73,7 +88,7 @@ export default function Footer() {
         </Stack>
         <Stack
           style={{ border: "1px solid #C5C8C9", width: "100%", opacity: "0.2" }}
-          sx={{ mt: "80px" }}
+          sx={{ mt: "0" }}
         ></Stack>
         <Stack className={"copyright-txt"}>
           © Copyright Devex Global, All rights reserved.

@@ -82,3 +82,68 @@
 .foot-category-title:hover:after {
   transform: scaleX(1);
 }
+
+/* Portfolio redesign */
+.foot-desc-txt {
+  max-width: 330px;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.sns-context {
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.sns-context img {
+  width: 38px;
+  height: 38px;
+  padding: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--ee-radius);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.foot-category-title {
+  width: auto;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.foot-category-link {
+  height: auto;
+  gap: 12px;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.foot-category-link a {
+  color: #cbd5e1;
+}
+
+.foot-category-link a:hover,
+.find-us div:hover {
+  color: #ffffff;
+}
+
+.find-us span {
+  min-width: 24px;
+  color: var(--ee-warm);
+  font-family: inherit;
+}
+
+.find-us div {
+  color: #cbd5e1;
+  font-family: inherit;
+}
+
+.copyright-txt {
+  color: #94a3b8;
+  font-family: inherit;
+}

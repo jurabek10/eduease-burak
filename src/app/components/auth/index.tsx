@@ -21,18 +21,25 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 2, 2),
+    border: "0",
+    borderRadius: 8,
+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.24)",
+    outline: "none",
+    overflow: "hidden",
+    padding: 0,
   },
 }));
 const ModalImg = styled.img`
-  width: 62%;
-  height: 100%;
-  border-radius: 10px;
-  background: #000;
-  margin-top: 9px;
-  margin-left: 10px;
+  width: 52%;
+  min-height: 430px;
+  object-fit: cover;
+  border-radius: 0;
+  background: #f8fafc;
+  margin: 0;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 interface AuthenticationModalProps {
   signupOpen: boolean;
@@ -126,11 +133,18 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
           <Stack
             className={classes.paper}
             direction={"row"}
-            sx={{ width: "800px" }}
+            sx={{ width: "min(860px, calc(100vw - 32px))" }}
           >
-            <ModalImg src={"/img/signup.jpg"} alt="camera" />
-            <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
-              <h2>Signup Form</h2>
+            <ModalImg src={"/img/signup.jpg"} alt="Student signing up" />
+            <Stack
+              sx={{
+                width: { xs: "100%", md: "48%" },
+                p: { xs: 3, sm: 4 },
+                alignItems: "stretch",
+                justifyContent: "center",
+              }}
+            >
+              <h2 style={{ margin: "0 0 18px", color: "#111827" }}>Create account</h2>
               <TextField
                 sx={{ marginTop: "7px" }}
                 id="outlined-basic"
@@ -149,11 +163,12 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                type="password"
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
               />
               <Fab
-                sx={{ marginTop: "30px", width: "120px" }}
+                sx={{ marginTop: "30px", width: "140px", alignSelf: "flex-start" }}
                 variant="extended"
                 color="primary"
                 onClick={handleSignupRequest}
@@ -181,17 +196,18 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
           <Stack
             className={classes.paper}
             direction={"row"}
-            sx={{ width: "700px" }}
+            sx={{ width: "min(760px, calc(100vw - 32px))" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
+            <ModalImg src={"/img/auth.webp"} alt="EduEase login" />
             <Stack
               sx={{
-                marginLeft: "65px",
-                marginTop: "25px",
-                alignItems: "center",
+                width: { xs: "100%", md: "48%" },
+                p: { xs: 3, sm: 4 },
+                alignItems: "stretch",
+                justifyContent: "center",
               }}
             >
-              <h2>Login Form</h2>
+              <h2 style={{ margin: "0 0 18px", color: "#111827" }}>Welcome back</h2>
               <TextField
                 id="outlined-basic"
                 label="username"
@@ -210,7 +226,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
               <Fab
                 sx={{
                   marginTop: "27px",
-                  width: "120px",
+                  width: "130px",
+                  alignSelf: "flex-start",
                 }}
                 variant={"extended"}
                 color={"primary"}
