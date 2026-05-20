@@ -30,12 +30,15 @@ export default function HelpPage() {
               <Tabs
                 value={value}
                 onChange={handleChange}
-                aria-label="lab API tabs example"
+                aria-label="help tabs"
                 className={"table_list"}
+                variant="scrollable"
+                scrollButtons="auto"
+                allowScrollButtonsMobile
               >
-                <Tab sx={{ color: "blue" }} label="TERMS" value={"1"} />
-                <Tab sx={{ color: "blue" }} label="FAQ" value={"2"} />
-                <Tab sx={{ color: "blue" }} label="CONTACT" value={"3"} />
+                <Tab label="TERMS" value={"1"} />
+                <Tab label="FAQ" value={"2"} />
+                <Tab label="CONTACT" value={"3"} />
               </Tabs>
             </Box>
           </Box>

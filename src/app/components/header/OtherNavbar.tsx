@@ -6,11 +6,21 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import { useState } from "react";
 import { CartItem } from "../../../lib/data/types/search";
 import { Logout } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 
@@ -42,44 +52,39 @@ export default function OtherNavbar(props: OtherNavberProps) {
     handleLoogoutRequest,
   } = props;
   const { authMember } = useGlobals();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeDrawer = () => setMobileOpen(false);
+
+  const navItems: { label: string; to: string }[] = [
+    { label: "Home", to: "/" },
+    { label: "Courses", to: "/courses" },
+    ...(authMember ? [{ label: "Purchase", to: "/purchase" }] : []),
+    ...(authMember ? [{ label: "My Page", to: "/member-page" }] : []),
+    { label: "Help", to: "/help" },
+  ];
+
   return (
     <div className="other-navbar">
       <Container className="navbar-container">
         <Stack className="menu">
-          <Box>
+          <Box className="brand">
             <NavLink to="/">
               <img className="brand-logo" src="/icons/eduease-logo.png" />
             </NavLink>
           </Box>
-          <Stack className="links">
-            <Box className={"hover-line"}>
-              <NavLink to="/">Home</NavLink>
-            </Box>
-            <Box className={"hover-line"}>
-              <NavLink to="/courses" activeClassName={"underline"}>
-                Courses
-              </NavLink>
-            </Box>
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to="/purchase" activeClassName={"underline"}>
-                  Purchase
+
+          <Stack className="links desktop-links">
+            {navItems.map((item) => (
+              <Box className={"hover-line"} key={item.to}>
+                <NavLink to={item.to} exact={item.to === "/"} activeClassName={"underline"}>
+                  {item.label}
                 </NavLink>
               </Box>
-            ) : null}
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to="/member-page" activeClassName={"underline"}>
-                  My Page
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className={"hover-line"}>
-              <NavLink to="/help" activeClassName={"underline"}>
-                Help
-              </NavLink>
-            </Box>
-            {/** BASKET */}
+            ))}
+          </Stack>
+
+          <Stack className="actions">
             <Basket
               cartItems={cartItems}
               onAdd={onAdd}
@@ -87,8 +92,9 @@ export default function OtherNavbar(props: OtherNavberProps) {
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
             />
+
             {!authMember ? (
-              <Box>
+              <Box className="desktop-only">
                 <Button
                   onClick={() => setLoginOpen(true)}
                   className="login-button"
@@ -109,6 +115,14 @@ export default function OtherNavbar(props: OtherNavberProps) {
                 onClick={handleLogutClick}
               />
             )}
+
+            <IconButton
+              className="burger-button"
+              aria-label="Open menu"
+              onClick={() => setMobileOpen(true)}
+            >
+              <MenuIcon />
+            </IconButton>
 
             <Menu
               anchorEl={anchorEl}
@@ -154,6 +168,81 @@ export default function OtherNavbar(props: OtherNavberProps) {
             </Menu>
           </Stack>
         </Stack>
+
+        <Drawer
+          anchor="right"
+          open={mobileOpen}
+          onClose={closeDrawer}
+          PaperProps={{ className: "mobile-drawer-paper" }}
+        >
+          <Box className="mobile-drawer">
+            <Stack className="drawer-head">
+              <NavLink to="/" onClick={closeDrawer} className="drawer-brand">
+                EduEase
+              </NavLink>
+              <IconButton onClick={closeDrawer} aria-label="Close menu">
+                <CloseIcon />
+              </IconButton>
+            </Stack>
+            <Divider />
+            <List className="drawer-list">
+              {navItems.map((item) => (
+                <ListItem key={item.to} disablePadding>
+                  <ListItemButton
+                    component={NavLink}
+                    to={item.to}
+                    exact={item.to === "/"}
+                    activeClassName="drawer-active"
+                    onClick={closeDrawer}
+                  >
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            <Box className="drawer-footer">
+              {!authMember ? (
+                <>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    className="drawer-signup"
+                    onClick={() => {
+                      closeDrawer();
+                      setSignupOpen(true);
+                    }}
+                  >
+                    Sign up
+                  </Button>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    className="drawer-login"
+                    onClick={() => {
+                      closeDrawer();
+                      setLoginOpen(true);
+                    }}
+                  >
+                    Login
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  startIcon={<Logout />}
+                  onClick={() => {
+                    closeDrawer();
+                    handleLoogoutRequest();
+                  }}
+                >
+                  Logout
+                </Button>
+              )}
+            </Box>
+          </Box>
+        </Drawer>
       </Container>
     </div>
   );

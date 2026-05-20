@@ -123,159 +123,60 @@ export default function CourseList(props: ProductsProps) {
             </Box>
           </Stack>
           <Stack className="courses-list-category-wrapper">
-            <Stack className="course-list-filter">
-              <Button
-                sx={{
-                  background:
-                    courseSearch.order === "createdAt"
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchOrderHandler("createdAt")}
-              >
-                {" "}
-                New{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.order === "coursePrice"
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchOrderHandler("coursePrice")}
-              >
-                {" "}
-                Price{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.order === "courseView"
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchOrderHandler("courseView")}
-              >
-                {" "}
-                Most Interested{" "}
-              </Button>
-              {/* <Button
-                sx={{
-                  background:
-                    courseSearch.courseStatus === CourseStatus.SALED
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchOrderHandler("")}
-              >
-                {" "}
-                Sales{" "}
-              </Button> */}
+            <Stack className="course-list-filter-row">
+              <span className="course-list-filter-label">Sort by</span>
+              <Stack className="course-list-filter">
+                {[
+                  { key: "createdAt", label: "Newest" },
+                  { key: "coursePrice", label: "Price" },
+                  { key: "courseView", label: "Most Interested" },
+                ].map(({ key, label }) => (
+                  <Button
+                    key={key}
+                    variant="text"
+                    className={`course-list-filter-button${
+                      courseSearch.order === key ? " is-active" : ""
+                    }`}
+                    onClick={() => searchOrderHandler(key)}
+                  >
+                    {label}
+                  </Button>
+                ))}
+              </Stack>
             </Stack>
-            <Stack className="course-list-filter">
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.BUSINESS
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.BUSINESS)}
-              >
-                {" "}
-                BUSINESS{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.FINANCE
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.FINANCE)}
-              >
-                {" "}
-                FINANCE{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.IT
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.IT)}
-              >
-                {" "}
-                IT{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.MARKETING
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.MARKETING)}
-              >
-                {" "}
-                MARKETING{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.MUSIC
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.MUSIC)}
-              >
-                {" "}
-                MUSIC{" "}
-              </Button>
-              <Button
-                sx={{
-                  background:
-                    courseSearch.courseCategory === CourseCategory.OTHER
-                      ? "rgb(6, 96, 126)"
-                      : "rgb(83, 187, 222)",
-                  color: "#ffffff",
-                }}
-                variant={"contained"}
-                className={"course-list-filter-button"}
-                onClick={() => searchCategoryHandler(CourseCategory.OTHER)}
-              >
-                {" "}
-                OTHER{" "}
-              </Button>
+
+            <Stack className="course-list-filter-row">
+              <span className="course-list-filter-label">Category</span>
+              <Stack className="course-list-filter">
+                <Button
+                  variant="text"
+                  className={`course-list-filter-button${
+                    !courseSearch.courseCategory ? " is-active" : ""
+                  }`}
+                  onClick={() => searchCategoryHandler(undefined)}
+                >
+                  All
+                </Button>
+                {[
+                  CourseCategory.BUSINESS,
+                  CourseCategory.FINANCE,
+                  CourseCategory.IT,
+                  CourseCategory.MARKETING,
+                  CourseCategory.MUSIC,
+                  CourseCategory.OTHER,
+                ].map((cat) => (
+                  <Button
+                    key={cat}
+                    variant="text"
+                    className={`course-list-filter-button${
+                      courseSearch.courseCategory === cat ? " is-active" : ""
+                    }`}
+                    onClick={() => searchCategoryHandler(cat)}
+                  >
+                    {cat}
+                  </Button>
+                ))}
+              </Stack>
             </Stack>
           </Stack>
 
@@ -352,32 +253,18 @@ export default function CourseList(props: ProductsProps) {
                           {course.courseCategory}
                         </p>
 
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            marginTop: "20px",
-                          }}
-                          className="buttons-wrapper"
-                        >
+                        <div className="buttons-wrapper">
                           <Button
-                            sx={{
-                              background: "blue",
-                            }}
                             variant="contained"
+                            className="view-button"
                             onClick={() => chooseCourseHandler(course._id)}
                           >
                             See details
                           </Button>
                           <Button
-                            sx={{
-                              background: "red",
-                            }}
                             variant="contained"
-                            className={"shop-btn"}
+                            className="basket-button"
                             onClick={(e) => {
-                              console.log("BUTTON PASSED");
                               e.stopPropagation();
                               onAdd({
                                 _id: course._id,

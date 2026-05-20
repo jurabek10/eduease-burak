@@ -20,7 +20,7 @@ export default function Features() {
                   height={63}
                 />
                 <h4 className="feature-title">Online courses</h4>
-                <p className="feature txt">
+                <p className="feature-txt">
                   Choose from hundreds of free training courses, or pay to get
                   certified to complete a course or specialization.
                 </p>
@@ -34,7 +34,7 @@ export default function Features() {
                   height={63}
                 />
                 <h4 className="feature-title">Our Mission</h4>
-                <p className="feature txt">
+                <p className="feature-txt">
                   Developing strong vision and mission statements can help
                   stakeholders in your school reach such a common understanding.
                 </p>
@@ -48,7 +48,7 @@ export default function Features() {
                   height={63}
                 />
                 <h4 className="feature-title">Professional Certificate</h4>
-                <p className="feature txt">
+                <p className="feature-txt">
                   Join the millions of students around the world who are already
                   learning! Find an experienced and suitable instructor only for
                   you.
