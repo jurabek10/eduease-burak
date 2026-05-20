@@ -378,3 +378,501 @@
     padding: 52px 0 72px;
   }
 }
+
+/* ============================================
+   MEMBER PAGE — RESPONSIVE REDESIGN
+   ============================================ */
+.user-page {
+  background: var(--ee-bg);
+}
+
+.user-page .my-page-frame {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 72px 16px 92px;
+}
+
+.user-page .my-page-frame .my-page-left {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-page .my-page-frame .my-page-right {
+  flex: 0 0 340px;
+  width: 340px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* SECTION HEADER */
+.user-page .my-page-left .menu-name {
+  width: 100%;
+  height: auto;
+  margin: 0 0 20px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--ee-line);
+  display: block;
+  justify-content: flex-start;
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  color: var(--ee-ink);
+  text-align: left;
+}
+
+.user-page .my-page-left .menu-content {
+  margin-top: 0;
+  width: 100%;
+}
+
+/* SETTINGS — inner card neutralized (parent already provides surface) */
+.user-page .settings {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Avatar upload block */
+.user-page .settings .member-media-frame {
+  margin: 0 0 4px;
+  padding: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  border: 1px dashed var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+}
+
+.user-page .settings .member-media-frame .mb-image {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  margin: 0;
+  border-radius: 50%;
+  border: 3px solid var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+  object-fit: cover;
+}
+
+.user-page .settings .member-media-frame .media-change-box {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-page .settings .member-media-frame .media-change-box span {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ee-ink);
+}
+
+.user-page .settings .member-media-frame .media-change-box p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.user-page .settings .up-del-box {
+  position: relative;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  background: var(--ee-ink);
+  border-radius: var(--ee-radius);
+  cursor: pointer;
+}
+
+.user-page .settings .up-del-box:hover {
+  background: #000000;
+}
+
+.user-page .settings .up-del-box .MuiButtonBase-root {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+.user-page .settings .up-del-box .MuiSvgIcon-root {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+/* INPUT ROWS */
+.user-page .settings .input-frame {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.user-page .settings .short-input {
+  flex: 1 1 240px;
+  min-width: 0;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-page .settings .long-input {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-page .settings .spec-label {
+  margin-bottom: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.user-page .settings .spec-input {
+  width: 100%;
+  height: auto;
+  min-height: 46px;
+  margin-top: 0;
+  padding: 0 14px;
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+  box-shadow: none;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ee-ink);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.user-page .settings .spec-input:focus {
+  border-color: var(--ee-primary);
+  background: var(--ee-surface);
+  outline: none;
+}
+
+.user-page .settings .spec-input::placeholder {
+  color: #9ca3af;
+}
+
+.user-page .settings .spec-textarea {
+  width: 100%;
+  min-height: 140px;
+  height: auto;
+  margin-top: 0;
+  padding: 14px;
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+  box-shadow: none;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ee-ink);
+  resize: vertical;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.user-page .settings .spec-textarea:focus {
+  border-color: var(--ee-primary);
+  background: var(--ee-surface);
+  outline: none;
+}
+
+.user-page .settings .spec-textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* SAVE BUTTON */
+.user-page .settings .save-box {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-page .settings .save-box .MuiButtonBase-root {
+  min-width: 140px;
+  height: 46px;
+  padding: 0 24px;
+  border-radius: var(--ee-radius) !important;
+  background: var(--ee-primary) !important;
+  color: #ffffff !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0.2px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22) !important;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.user-page .settings .save-box .MuiButtonBase-root:hover {
+  background: var(--ee-primary-dark) !important;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   RIGHT — USER INFO CARD
+   ============================================ */
+.user-page .my-page-right .order-info-box {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+  overflow: visible;
+}
+
+.user-page .my-page-right .order-info-box .order-user-img {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.user-page .my-page-right .order-info-box .order-user-img .order-user-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+  filter: none;
+}
+
+.user-page .my-page-right .order-info-box .order-user-icon-box {
+  position: absolute;
+  top: auto;
+  bottom: -4px;
+  right: -4px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ee-primary);
+  border: 2px solid var(--ee-surface);
+  border-radius: 50%;
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.user-page .my-page-right .order-info-box .order-user-icon-box img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.user-page .my-page-right .order-info-box .order-user-name {
+  margin: 12px 0 0;
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+  color: var(--ee-ink);
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.user-page .my-page-right .order-info-box .order-user-prof {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6b7280;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.user-page .my-page-right .order-info-box .order-user-prof:nth-of-type(2) {
+  margin-top: 4px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--ee-ink);
+}
+
+.user-page .my-page-right .order-info-box .user-media-box {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 0;
+  border-top: 1px solid var(--ee-line);
+  border-bottom: 1px solid var(--ee-line);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 6px;
+}
+
+.user-page .my-page-right .order-info-box .user-media-box .MuiSvgIcon-root {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--ee-surface-soft);
+  color: var(--ee-ink);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.user-page .my-page-right .order-info-box .user-media-box .MuiSvgIcon-root:hover {
+  background: var(--ee-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.user-page .my-page-right .order-info-box .user-desc {
+  width: 100%;
+  margin: 4px 0 0;
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #4b5563;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .user-page .my-page-frame .my-page-right {
+    flex: 0 0 300px;
+    width: 300px;
+  }
+}
+
+@media (max-width: 860px) {
+  .user-page .my-page-frame {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 40px 16px 60px;
+  }
+
+  .user-page .my-page-frame .my-page-left,
+  .user-page .my-page-frame .my-page-right {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .user-page .my-page-frame .my-page-right {
+    order: -1;
+  }
+
+  .user-page .my-page-left {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-page .my-page-frame {
+    padding: 28px 12px 48px;
+  }
+
+  .user-page .my-page-left {
+    padding: 18px;
+  }
+
+  .user-page .settings .input-frame {
+    gap: 14px;
+  }
+
+  .user-page .settings .short-input {
+    flex: 1 1 100%;
+  }
+
+  .user-page .settings .member-media-frame {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .user-page .settings .member-media-frame .mb-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-page .settings .save-box .MuiButtonBase-root {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .user-page .settings .save-box {
+    justify-content: stretch;
+  }
+
+  .user-page .my-page-right .order-info-box {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .user-page .settings .member-media-frame {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .user-page .settings .member-media-frame .mb-image {
+    align-self: center;
+  }
+}
