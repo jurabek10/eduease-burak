@@ -23,7 +23,10 @@ export default function Footer() {
             alignItems: "flex-start",
           }}
         >
-          <Stack flexDirection={"column"} style={{ width: "340px" }}>
+          <Stack
+            flexDirection={"column"}
+            sx={{ width: { xs: "100%", md: "340px" }, maxWidth: "100%" }}
+          >
             <Box>
               <img width={"110px"} src={"/icons/eduease-logo.png"} alt="EduEase" />
             </Box>
