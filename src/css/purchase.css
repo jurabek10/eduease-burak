@@ -359,3 +359,546 @@
     padding: 52px 0 72px;
   }
 }
+
+/* ============================================
+   PURCHASE PAGE — RESPONSIVE REDESIGN
+   ============================================ */
+.order-page .order-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 24px;
+}
+
+.order-page .order-left {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+}
+
+.order-page .order-right {
+  flex: 0 0 360px;
+  width: 360px;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* TABS */
+.order-page .order-nav-frame .MuiTabs-root {
+  min-height: 44px;
+}
+
+.order-page .order-nav-frame .MuiTab-root {
+  min-height: 44px;
+  padding: 8px 18px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--ee-muted, #6b7280) !important;
+  text-transform: uppercase;
+}
+
+.order-page .order-nav-frame .MuiTab-root.Mui-selected {
+  color: var(--ee-primary-dark) !important;
+}
+
+.order-page .order-nav-frame .MuiTabs-indicator {
+  background-color: var(--ee-primary) !important;
+  height: 3px;
+  border-radius: 999px;
+}
+
+.order-page .order-nav-frame .MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+
+/* ORDER MAIN BOX (each order card) */
+.order-page .order-main-box {
+  width: 100%;
+  margin-top: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.order-page .order-main-box:first-of-type {
+  margin-top: 18px;
+}
+
+.order-page .order-main-box .order-box-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price {
+  margin-top: 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--ee-line);
+  border-radius: var(--ee-radius);
+  background: var(--ee-surface-soft);
+  min-width: 0;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .order-dish-img {
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  border-radius: var(--ee-radius);
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .title-dish {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--ee-ink);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .price-box {
+  flex: 0 0 auto;
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .price-box img {
+  width: 14px;
+  height: 14px;
+  opacity: 0.55;
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .price-box p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ee-ink);
+}
+
+.order-page .order-main-box .order-box-scroll .orders-name-price .price-box p:last-of-type {
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ee-primary-dark);
+  margin-left: 6px !important;
+}
+
+/* TOTAL + ACTION BUTTONS ROW */
+.order-page .order-main-box .total-price-box {
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ee-line);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.order-page .order-main-box .total-price-box .box-total {
+  margin: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.order-page .order-main-box .total-price-box .box-total .box-total-text {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.order-page .order-main-box .total-price-box .box-total .box-total-number {
+  margin: 0;
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--ee-ink);
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons,
+.order-page .order-main-box .total-price-box .buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-cancel,
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-payment,
+.order-page .order-main-box .total-price-box .buttons-wrapper .process-button,
+.order-page .order-main-box .total-price-box .buttons-wrapper button {
+  margin: 0 !important;
+  min-width: 110px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--ee-radius) !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0.2px;
+  box-shadow: none !important;
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-cancel {
+  background: var(--ee-surface) !important;
+  border: 1px solid var(--ee-line) !important;
+  color: var(--ee-ink) !important;
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-cancel:hover {
+  background: #fef2f2 !important;
+  border-color: #fca5a5 !important;
+  color: #dc2626 !important;
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-payment {
+  background: var(--ee-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.22) !important;
+}
+
+.order-page .order-main-box .total-price-box .paused-buttons .paused-btn-payment:hover {
+  background: var(--ee-primary-dark) !important;
+}
+
+.order-page .order-main-box .total-price-box .buttons-wrapper .data {
+  margin: 0 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* RIGHT PANEL — USER FRAME */
+.order-page .order-right .user-frame {
+  width: 100%;
+  margin: 0;
+  padding: 24px 18px;
+  box-shadow: var(--ee-shadow-soft);
+  align-items: center;
+}
+
+.order-page .order-right .user-img-wrapper {
+  width: 96px;
+  height: 96px;
+}
+
+.order-page .order-right .user-frame .user-img {
+  width: 96px;
+  height: 96px;
+  margin-top: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+}
+
+.order-page .order-right .user-frame .person-icon-wrapper {
+  width: 30px;
+  height: 30px;
+  bottom: -4px;
+  right: -4px;
+  border: 2px solid var(--ee-surface);
+  background: var(--ee-primary);
+}
+
+.order-page .order-right .user-frame .person-icon-wrapper img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.order-page .order-right .user-name {
+  margin: 16px 0 4px;
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--ee-ink);
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.order-page .order-right .user-type {
+  margin: 0 0 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.order-page .order-right .user-location-wrapper {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.order-page .order-right .user-location-wrapper .MuiSvgIcon-root {
+  color: var(--ee-primary);
+  flex: 0 0 auto;
+}
+
+.order-page .order-right .user-location-wrapper .user-address {
+  margin-left: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ee-ink);
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* RIGHT PANEL — PAYMENT FRAME */
+.order-page .order-right .payment-frame {
+  width: 100%;
+  margin: 0;
+  padding: 22px 18px;
+  background: var(--ee-surface);
+  box-shadow: var(--ee-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-page .order-right .input {
+  margin: 0;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: var(--ee-radius);
+  border: 1px solid var(--ee-line);
+  background: var(--ee-surface-soft);
+  color: var(--ee-ink);
+}
+
+.order-page .order-right .input::placeholder {
+  color: #9ca3af;
+}
+
+.order-page .order-right .input:focus {
+  border-color: var(--ee-primary);
+  background: var(--ee-surface);
+  outline: none;
+}
+
+.order-page .order-right .input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
+  margin: 0;
+}
+
+.order-page .order-right .input-50 {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  margin: 0 !important;
+}
+
+.order-page .order-right .input-50:not(:last-child) {
+  margin-right: 0 !important;
+}
+
+.order-page .order-right .cards-wrapper {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ee-line);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.order-page .order-right .cards-wrapper .card-img {
+  width: auto;
+  height: 26px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(0.4) opacity(0.85);
+  transition: filter 160ms ease;
+}
+
+.order-page .order-right .cards-wrapper .card-img:not(:last-child) {
+  margin-right: 0;
+}
+
+.order-page .order-right .cards-wrapper .card-img:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+/* EMPTY STATE */
+.order-page .table-panel img[src*="noimage-list.svg"] {
+  width: 220px !important;
+  height: 220px !important;
+  max-width: 60%;
+  margin: 24px auto;
+  opacity: 0.5;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (max-width: 1024px) {
+  .order-page .order-right {
+    flex: 0 0 320px;
+    width: 320px;
+  }
+}
+
+@media (max-width: 860px) {
+  .order-page .order-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 40px 0 60px;
+  }
+
+  .order-page .order-left,
+  .order-page .order-right {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .order-page .order-right {
+    order: -1;
+  }
+
+  .order-page .order-main-box {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .order-page .order-container {
+    width: min(1180px, calc(100% - 16px));
+    padding: 28px 0 48px;
+  }
+
+  .order-page .order-left,
+  .order-page .order-right {
+    padding: 14px;
+  }
+
+  .order-page .order-main-box .order-box-scroll .orders-name-price {
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .order-page .order-main-box .order-box-scroll .orders-name-price .title-dish {
+    flex: 1 1 60%;
+    font-size: 14px;
+  }
+
+  .order-page .order-main-box .order-box-scroll .orders-name-price .price-box {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+
+  .order-page .order-main-box .order-box-scroll .orders-name-price .order-dish-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .order-page .order-main-box .total-price-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .order-page .order-main-box .total-price-box .box-total {
+    justify-content: space-between;
+  }
+
+  .order-page .order-main-box .total-price-box .paused-buttons,
+  .order-page .order-main-box .total-price-box .buttons-wrapper {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .order-page .order-main-box .total-price-box .paused-buttons .paused-btn-cancel,
+  .order-page .order-main-box .total-price-box .paused-buttons .paused-btn-payment,
+  .order-page .order-main-box .total-price-box .buttons-wrapper .process-button,
+  .order-page .order-main-box .total-price-box .buttons-wrapper button {
+    flex: 1 1 0;
+  }
+
+  .order-page .order-nav-frame .MuiTab-root {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .order-page .order-right .cards-wrapper .card-img {
+    height: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .order-page .order-main-box .total-price-box .paused-buttons,
+  .order-page .order-main-box .total-price-box .buttons-wrapper {
+    flex-direction: column;
+  }
+
+  .order-page .order-main-box .total-price-box .paused-buttons .paused-btn-cancel,
+  .order-page .order-main-box .total-price-box .paused-buttons .paused-btn-payment,
+  .order-page .order-main-box .total-price-box .buttons-wrapper button {
+    width: 100%;
+  }
+}

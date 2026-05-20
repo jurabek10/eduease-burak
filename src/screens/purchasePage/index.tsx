@@ -71,24 +71,15 @@ export default function PurchasePage() {
                 <Tabs
                   value={value}
                   onChange={handleChange}
-                  aria-label="basic tabs example"
+                  aria-label="purchase tabs"
                   className={"table_list"}
+                  variant="scrollable"
+                  scrollButtons="auto"
+                  allowScrollButtonsMobile
                 >
-                  <Tab
-                    sx={{ color: "blue" }}
-                    label="PAUSED PURCHASES"
-                    value={"1"}
-                  />
-                  <Tab
-                    sx={{ color: "blue" }}
-                    label="PROCESS PURCHASES"
-                    value={"2"}
-                  />
-                  <Tab
-                    sx={{ color: "blue" }}
-                    label="FINISHED PURCHASES"
-                    value={"3"}
-                  />
+                  <Tab label="PAUSED PURCHASES" value={"1"} />
+                  <Tab label="PROCESS PURCHASES" value={"2"} />
+                  <Tab label="FINISHED PURCHASES" value={"3"} />
                 </Tabs>
               </Box>
               <Stack className={"order-main-contents"}>
@@ -126,7 +117,7 @@ export default function PurchasePage() {
             </Box>
             <Box className={"user-name"}>{authMember?.memberNick}</Box>
             <Box className={"user-type"}> {authMember?.memberType}</Box>
-            <Divider height="2" width="360" bg="rgb(161, 161, 161)" />
+            <Divider height="2" width="100%" bg="rgb(161, 161, 161)" />
             <div className="user-location-wrapper">
               <Box>
                 <LocationOnIcon />
